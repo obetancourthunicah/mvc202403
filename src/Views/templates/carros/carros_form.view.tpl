@@ -1,67 +1,78 @@
 <h1>{{modes_dsc}}</h1>
-<section>
-    <form action="index.php?page=Carros-CarrosForm&mode={{mode}}&codigo={{codigo}}" method="post">
+<section class="grid">
+    <form action="index.php?page=Carros-CarrosForm&mode={{mode}}&codigo={{codigo}}" method="post" class="row">
         {{with carro}}
-        <div>
-            <label for="codigo">Código</label>
-            <input type="text" name="codigo" id="codigo" value="{{codigo}}" readonly />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="codigo">Código</label>
+            <input class="col-8" type="text" name="codigo" id="codigo" value="{{codigo}}" readonly />
         </div>
-        <div>
-            <label for="modelo">Modelo</label>
-            <input type="text" name="modelo" id="modelo" value="{{modelo}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="modelo">Modelo</label>
+            <input class="col-8" type="text" name="modelo" id="modelo" value="{{modelo}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="marca">Marca</label>
-            <input type="text" name="marca" id="marca" value="{{marca}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="marca">Marca</label>
+            <input class="col-8" type="text" name="marca" id="marca" value="{{marca}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="anio">Año</label>
-            <input type="text" name="anio" id="anio" value="{{anio}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="anio">Año</label>
+            <input class="col-8" type="text" name="anio" id="anio" value="{{anio}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="kilometraje">Kilometraje</label>
-            <input type="text" name="kilometraje" id="kilometraje" value="{{kilometraje}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="kilometraje">Kilometraje</label>
+            <input class="col-8" type="text" name="kilometraje" id="kilometraje" value="{{kilometraje}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="chasis">Chasis</label>
-            <input type="text" name="chasis" id="chasis" value="{{chasis}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="chasis">Chasis</label>
+            <input class="col-8" type="text" name="chasis" id="chasis" value="{{chasis}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="color">Color</label>
-            <input type="text" name="color" id="color" value="{{color}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="color">Color</label>
+            <input class="col-8" type="text" name="color" id="color" value="{{color}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="registro">Registro</label>
-            <input type="text" name="registro" id="registro" value="{{registro}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="registro">Registro</label>
+            <input class="col-8" type="text" name="registro" id="registro" value="{{registro}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="cilindraje">Cilindraje</label>
-            <input type="text" name="cilindraje" id="cilindraje" value="{{cilindraje}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="cilindraje">Cilindraje</label>
+            <input class="col-8" type="text" name="cilindraje" id="cilindraje" value="{{cilindraje}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="rodaje">Rodaje</label>
-            <input type="text" name="rodaje" id="rodaje" value="{{rodaje}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="rodaje">Rodaje</label>
+            <input class="col-8" type="text" name="rodaje" id="rodaje" value="{{rodaje}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="estado">Estado</label>
-            <input type="text" name="estado" id="estado" value="{{estado}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="estado">Estado</label>
+            <input class="col-8" type="text" name="estado" id="estado" value="{{estado}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="precioventa">Precio de Venta</label>
-            <input type="text" name="precioventa" id="precioventa" value="{{precioventa}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="precioventa">Precio de Venta</label>
+            <input class="col-8" type="text" name="precioventa" id="precioventa" value="{{precioventa}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="preciominio">Precio Mínimo</label>
-            <input type="text" name="preciominio" id="preciominio" value="{{preciominio}}" />
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="preciominio">Precio Mínimo</label>
+            <input class="col-8" type="text" name="preciominio" id="preciominio" value="{{preciominio}}" {{~readonly}} />
         </div>
-        <div>
-            <label for="notas">Notas</label><br/>
-            <textarea name="notas" id="notas">{{notas}}</textarea>
+        <div class="row col-6 offset-3">
+            <label class="col-4" for="notas">Notas</label><br/>
+            <textarea name="notas" id="notas" class="col-8" {{~readonly}}>{{notas}}</textarea>
         </div>
-        <div>
-            <button type="submit">Confirmar</button>
-            <a href="index.php?page=Carros-CarrosList" class="btn">Cancelar</a>
+        <div class="row col-6 offset-3 flex-end">
+            {{if ~showConfirm}}
+                <button type="submit" class="primary">Confirmar</button>&nbsp;
+            {{endif ~showConfirm}}
+            <button id="btnCancelar" class="btn">Cancelar</button>
         </div>
         {{endwith carro}}
     </form>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+        document.getElementById("btnCancelar").addEventListener('click', (e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.assign("index.php?page=Carros-CarrosList");
+        })
+    })
+</script>
