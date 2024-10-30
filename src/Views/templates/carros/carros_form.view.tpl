@@ -9,10 +9,28 @@
         <div class="row col-6 offset-3">
             <label class="col-4" for="modelo">Modelo</label>
             <input class="col-8" type="text" name="modelo" id="modelo" value="{{modelo}}" {{~readonly}} />
+            {{if ~modelo_haserror}}
+                <div class="error">
+                    <ul>
+                    {{foreach ~modelo_error}}
+                        <li>{{this}}</li>
+                    {{endfor ~modelo_error}}
+                    </ul>
+                </div>
+            {{endif ~modelo_haserror}}
         </div>
         <div class="row col-6 offset-3">
             <label class="col-4" for="marca">Marca</label>
             <input class="col-8" type="text" name="marca" id="marca" value="{{marca}}" {{~readonly}} />
+             {{if ~marca_haserror}}
+            <div class="error">
+                <ul>
+                {{foreach ~marca_error}}
+                    <li>{{this}}</li>
+                {{endfor ~marca_error}}
+                </ul>
+            </div>
+        {{endif ~marca_haserror}}
         </div>
         <div class="row col-6 offset-3">
             <label class="col-4" for="anio">Año</label>
@@ -64,6 +82,15 @@
             {{endif ~showConfirm}}
             <button id="btnCancelar" class="btn">Cancelar</button>
         </div>
+        {{if ~global_haserror}}
+            <div class="error">
+                <ul>
+                    {{foreach ~global_error}}
+                        <li>{{this}}</li>
+                    {{endfor ~global_error}}
+                </ul>
+            </div>
+        {{endif ~global_haserror}}
         {{endwith carro}}
     </form>
 </section>
