@@ -5,6 +5,7 @@
         <div class="row col-6 offset-3">
             <label class="col-4" for="codigo">Código</label>
             <input class="col-8" type="text" name="codigo" id="codigo" value="{{codigo}}" readonly />
+            <input type="hidden" name="xssToken" value="{{~xssToken}}" />
         </div>
         <div class="row col-6 offset-3">
             <label class="col-4" for="modelo">Modelo</label>

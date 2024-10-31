@@ -21,6 +21,8 @@ class CarrosForm extends PublicController
 
     private $errors = [];
 
+    private $xssToken = '';
+
 
     private function addError($error, $context = 'global')
     {
@@ -111,10 +113,15 @@ class CarrosForm extends PublicController
         $this->carro["estado"] = $_POST["estado"];
         $this->carro["precioventa"] = floatval($_POST["precioventa"]);
         $this->carro["preciominio"] = floatval($_POST["preciominio"]);
+
+        $this->xssToken = $_POST["xssToken"];
     }
 
     private function validarDatos()
     {
+        if (!$this->validarAntiXSSToken()) {
+            \Utilities\Site::redirectToWithMsg('index.php?page=Carros-CarrosList', "Error al procesar el solicitud.");
+        }
         if (Validators::IsEmpty($this->carro["modelo"])) {
             $this->addError("Modelo no puede venir vacio!", "modelo");
         }
@@ -151,6 +158,22 @@ class CarrosForm extends PublicController
         }
     }
 
+    private function generateAntiXSSToken()
+    {
+        $_SESSION["Carros_Form_XSST"] = hash("sha256", time() . "CARRO_FORM");
+        $this->xssToken = $_SESSION["Carros_Form_XSST"];
+    }
+
+    private function validarAntiXSSToken()
+    {
+        if (isset($_SESSION["Carros_Form_XSST"])) {
+            if ($this->xssToken === $_SESSION["Carros_Form_XSST"]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private function generarViewData()
     {
         $this->viewData["mode"] = $this->mode;
@@ -170,5 +193,7 @@ class CarrosForm extends PublicController
             $this->viewData[$context . '_haserror'] = count($errores) > 0;
         }
         $this->viewData["showConfirm"] = ($this->viewData["mode"] != 'DSP');
+        $this->generateAntiXSSToken();
+        $this->viewData["xssToken"] = $this->xssToken;
     }
 }
