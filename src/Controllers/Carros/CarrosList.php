@@ -2,11 +2,11 @@
 
 namespace Controllers\Carros;
 
-use Controllers\PublicController;
+use Controllers\PrivateController;
 use Dao\Carros\Carros;
 use Views\Renderer;
 
-class CarrosList extends PublicController
+class CarrosList extends PrivateController
 {
     public function run(): void
     {
@@ -22,7 +22,11 @@ class CarrosList extends PublicController
             $viewCarros[] = $carro;
         }
         $viewData = [
-            "carros" => $viewCarros
+            "carros" => $viewCarros,
+            "INS_enable" => $this->isFeatureAutorized('carros_INS_enabled'),
+            "UPD_enable" => $this->isFeatureAutorized('carros_UPD_enabled'),
+            "DEL_enable" => $this->isFeatureAutorized('carros_DEL_enabled'),
+            "estado_enable" => $this->isFeatureAutorized('carros_list_estado'),
         ];
 
         Renderer::render('carros/carros_list', $viewData);

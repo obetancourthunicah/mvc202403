@@ -2,13 +2,13 @@
 
 namespace Controllers\Carros;
 
-use Controllers\PublicController;
+use Controllers\PrivateController;
 use Views\Renderer;
 use Utilities\Site;
 use Dao\Carros\Carros;
 use Utilities\Validators;
 
-class CarrosForm extends PublicController
+class CarrosForm extends PrivateController
 {
     private $viewData = [];
     private $modeDscArr = [
@@ -84,6 +84,11 @@ class CarrosForm extends PublicController
     {
         if (isset($_GET["mode"]) && isset($this->modeDscArr[$_GET["mode"]])) {
             $this->mode = $_GET["mode"];
+            if ($this->mode !== 'DSP') {
+                if (!$this->isFeatureAutorized("carros_" . $this->mode . "_enabled")) {
+                    Site::redirectToWithMsg("index.php?page=Carros-CarrosList", "Algo Sucedio Mal. Intente de Nuevo");
+                }
+            }
         } else {
             Site::redirectToWithMsg("index.php?page=Carros-CarrosList", "Algo Sucedio Mal. Intente de Nuevo");
             die();

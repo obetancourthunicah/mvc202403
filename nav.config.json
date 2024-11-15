@@ -18,6 +18,11 @@
   ],
   "private": [
     {
+      "id":"Menu_Carros_Mantenimiento",
+      "nav_url": "index.php?page=Carros-CarrosList",
+      "nav_label": "Mantenimiento de Carros"
+    },
+    {
       "id":"Menu_PaymentCheckout",
       "nav_url": "index.php?page=Checkout_Checkout",
       "nav_label": "Carretilla de Compra"
